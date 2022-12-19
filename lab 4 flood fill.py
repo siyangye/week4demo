@@ -18,7 +18,10 @@ board = [
 ]
 
 def flood_fill(input_board: List[str], old: str, new: str, x: int, y: int) -> List[str]:
+    if not 0<= x < len(input_board) or not 0 <= y < len(input_board[0]) or old!= input_board[x][y]:
+        return input_board
     if input_board[x][y] == '#' or input_board[x][y]== new:
+    # the logic of if not- if 
         return input_board 
     elif input_board[x][y] == '.':
         input_board[x] = input_board[x][0:y]+'~'+ input_board[x][y+1:]
@@ -30,6 +33,8 @@ def flood_fill(input_board: List[str], old: str, new: str, x: int, y: int) -> Li
             flood_fill(input_board, old, new, x, y-1)
         if y <= 20:
             flood_fill(input_board, old, new, x, y+1)
+    input_board[x] = input_board[x][:y] + new + input_board[x][y+1:]
+    
     return input_board 
             
     
@@ -47,7 +52,7 @@ def flood_fill(input_board: List[str], old: str, new: str, x: int, y: int) -> Li
 
 
 
-modified_board = flood_fill(input_board=board, old=".", new="~", x=5, y=12)
+modified_board = flood_fill(input_board=board, old=".", new="~", x=0, y=0)
 
 for a in modified_board:
     print(a)
@@ -70,7 +75,3 @@ for a in modified_board:
 
 
 # In[ ]:
-
-
-
-
